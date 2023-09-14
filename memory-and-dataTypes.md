@@ -1,4 +1,3 @@
-# 메모리와 자료형
 # 메모리
 
 ## 컴퓨터가 데이터를 저장하는 공간
@@ -13,13 +12,12 @@
     - RAM이라고 불리는 하드웨어가 Memory 공간을 담당한다.
     - Storage보다 빠르지만, Register보다는 느린 속도로, Storage와 Register 사이에 위치하여 다른 속도 및 용량을 갖고 있는 저장장소들을 보완하는 역할
 
-```markdown
 |저장공간|Register|Memory|Storage|
 |:-|:-:|:-:|:-:|
 |용량당 가격|매우비쌈|중간|저렴|
 |처리속도|매우높음|중간|느림|
 |예시|CPU Register|RAM|HDD, SSD|
-```
+
 
 ## 프로그램 동작 원리
 
@@ -55,6 +53,19 @@ final int a = 3;
 ```
 
 # 자료형
+
+<img width="789" alt="스크린샷 2023-09-14 오후 1 05 06" src="https://github.com/yeawonbong/study-java/assets/75327385/7160ecb3-e667-4d8a-b363-7db74e3813b3">
+
+| 분류 | 타입 | 크기 | 기본값 | 범위 |
+| --- | --- | --- | --- | --- |
+| 정수형 | byte | 1byte | 0 | -128 ~ 127 |
+| 정수형 | short | 2byte | 0 | -32768 ~ 32767 |
+| 정수형 | int | 4byte | 0 | -2147483648 ~ 2147483647 |
+| 정수형 | long | 8byte | 0L | - 9223372036854775808 ~ 9223372036854775807 |
+| 문자형 | char | 4byte | ‘\u0000’ | 0 ~ 65535 (\u0000 ~ \uffff) |
+| 실수형 | float | 4byte | 0.0f | single-precision 64-bit IEEE 754 floating point |
+| 실수형 | double | 8byte | 0.0d | double-precision 64-bit IEEE 754 floating point |
+| 논리형 | boolean | 1byte | false | true, false |
 
 ## 기본형
 
