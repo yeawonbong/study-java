@@ -56,6 +56,9 @@ final int a = 3;
 
 <img width="789" alt="스크린샷 2023-09-14 오후 1 05 06" src="https://github.com/yeawonbong/study-java/assets/75327385/7160ecb3-e667-4d8a-b363-7db74e3813b3">
 
+
+## 기본형
+
 | 분류 | 타입 | 크기 | 기본값 | 범위 |
 | --- | --- | --- | --- | --- |
 | 정수형 | byte | 1byte | 0 | -128 ~ 127 |
@@ -66,30 +69,6 @@ final int a = 3;
 | 실수형 | float | 4byte | 0.0f | single-precision 64-bit IEEE 754 floating point |
 | 실수형 | double | 8byte | 0.0d | double-precision 64-bit IEEE 754 floating point |
 | 논리형 | boolean | 1byte | false | true, false |
-
-## 기본형
-
-- 정수형 (Integral Type)
-    - `int` `short` `long`
-- 실수형 (Floating point Type)
-    - `float` `double`
-    - 실수형 자료형에는 정수형 데이터를 저장할 수 있다.
-    - Java에서 일반적인 실수는 기본적으로 double형이다. float형에 실수를 저장할 시에는 숫자 뒤애 f를 붙여 float형태임을 명시해야 한다.
-        
-        ```java
-        float varFloat = 12.34f;
-        ```
-        
-- Boolean Type (참/거짓형)
-    - `boolean` - 1bit
-        
-        ```java
-        boolean varTrue = true;
-        boolean barFalse = false;
-        ```
-        
-- 문자형 (Character Type)
-    - `char`
 
 ## 참조형
 
@@ -139,7 +118,146 @@ boolean형을 제외한 모든 기본자료형에서 사용 가능하다.
     
     - 묵시적 형변환이 가능한 조건 : `목표 자료형 크기 > 바꾸려는 데이터의 자료형 크기` 일 때 가능하다. (바꾸려는 데이터 자료형의 크기가 더 작을 때)
 
+## Wrapper Class
+
+| 기본 타입 | 래퍼 클래스 |
+| --- | --- |
+| byte | Byte |
+| short | Short |
+| int | Integer |
+| long | Long |
+| float | Float |
+| double | Double |
+| char | Character |
+| boolean | Boolean |
+
+![image](https://github.com/yeawonbong/study-java/assets/75327385/a645451f-b5a1-4191-b4b3-41b217ff0664)
+
+
+- 래퍼 클래스는 기본형 타입을 객체로 다루기 위해 사용하는 클래스로, 포장객체라고도 말한다.
+- 래퍼클래스를 생성할 경우 각 타입에 해당하는 데이터를 파라미터로 전달받아 해당 값을 가지는 객체로 만들어준다.
+- 래퍼클래스로 감싸고 있는 기본타입 값은 외부에서 변경할 수 없다.
+- 래퍼클래스는 모두 `java.lang` 패키지에 포함되어 제공된다.
+
+### Boxing, UnBoxing
+
+![image](https://github.com/yeawonbong/study-java/assets/75327385/678d1503-3cff-490c-860b-ef25cee8e9cd)
+
+
+- Boxing: 기본 자료형 → 래퍼 클래스의 인스턴스로 변환
+- UnBoxing: 래퍼 클래스의 인스턴스에 저장된 값 → 기본 자료형의 데이터로 변환
+    - 언박싱 메소드
+        
+        
+        | 메소드 | 반환값 | 설명 |
+        | --- | --- | --- |
+        | booleanValue() | boolean | 기본형 데이터를 문자열로 바꾼 뒤에 반환 |
+        | byteValue() | byte | 객체의 값을 byte 값으로 변환하여 반환 |
+        | doubleValue() | double | 객체의 값을 double 값으로 변환하여 반환 |
+        | floatValue() | float | 객체의 값을 float 값으로 변환하여 반환 |
+        | intValue() | int | 객체의 값을 int 값으로 변환하여 반환 |
+        | longValue() | long | 객체의 값을 long 값으로 변환하여 반환 |
+        | shortValue() | short | 객체의 값을 short 값으로 변환하여 반환 |
+- 래퍼클래스의 값은 바로 변경할 수 없으므로, 가령 래퍼클래스 인스턴스에 저장된 값을 변경하고 싶다면 언박싱하여 값을 변경한 후 다시 박싱하는 식의 과정이 필요하다.
+- 하지만 JDK1.5부터는 자동으로 박싱, 언박싱이 된다.
+
+### AutoBoxing, AutoUnBoxing
+
+- 기본타입 값을 직접 박싱, 언박싱하지 않아도 래퍼 클래스 변수에 대입만 하면 자동으로 박싱과 언박싱이 된다.
+- 오토 박싱을 이용하면 new 키워드를 사용하지 않고도 자동으로 인스턴스를 생성할 수 있으며, 언박싱 메소드를 사용하지 않고도, 오토 언박싱을 이용하여 인스턴스에 저장된 값을 바로 참조할 수 있게 된다.
+    
+    ```java
+    /* 기존 박싱 & 언박싱 */
+    Integer num = new Integer(17); // 박싱
+    int n = num.intValue();        // 언박싱
+    
+    /* 오토 박싱 & 언박싱 */
+    Integer num = 17; // new Integer() 생략
+    int n = num; // intValue() 생략
+    ```
+    
+- 자동으로 처리되기 때문에, wrapper class의 연산이 가능하다.
+    
+    ```java
+    Integer num1 = new Integer(7); // 박싱
+    Integer num2 = new Integer(3); // 박싱
+    
+    int int1 = num1.intValue();    // 언박싱
+    int int2 = num2.intValue();    // 언박싱
+    
+    // 박싱된 객체를 오토 언박싱하여 연산하고 다시 박싱하여 저장
+    Integer result1 = num1 + num2; // 10 
+    Integer result2 = int1 - int2; // 4
+    int result3 = num1 * int2;     // 21
+    ```
+    
+
+### Wrapper Class 비교
+
+- 래퍼 클래스의 객체 값 비교는 포장 내부의 값을 얻어 비교해야 되기 때문에, 직접 언박싱해서 비교하던가, `equals()` 메소드를 통해 바로 비교가 가능하다. (참조형이기 때문에 그냥 비교할 경우 주소값 비교가 됨)
+    
+    ```java
+    Integer num1 = new Integer(10);
+    Integer num2 = new Integer(20);
+    Integer num3 = new Integer(10);
+    
+    System.out.println(num1 == num3);      // false
+    System.out.println(num1.equals(num3)); // true
+    
+    // 동등 비교 외의 연산은 문제 없다.
+    System.out.println(num1 < num2);       // true
+    System.out.println(num1 + num2);       // 30
+    ```
+    
+- 대신 래퍼 클래스와 기본 자료형과의 비교는 자동으로 오토박싱과 언박싱을 해주기 때문에 `==` 연산과`equals()` 연산 모두 가능하다.
+    
+    ```java
+    Integer num = new Integer(10); // 래퍼 클래스1
+    Integer num2 = new Integer(10); // 래퍼 클래스2
+    int i = 10; // 기본타입
+    
+    // 래퍼클래스 == 기본타입
+    System.out.println(num == i); // true
+    
+    // 래퍼클래스.equals(기본타입)
+    System.out.println(num.equals(i)); // true
+    
+    // 래퍼클래스 == 래퍼클래스
+    System.out.println(num == num2); // false (invalid)
+    
+    // 래퍼클래스.equals(래퍼클래스)
+    System.out.println(num.equals(num2)); // true
+    ```
+    
+
+### Wrapper을 이용한 자료형 변환 메소드
+
+- 객체를 포장하는 기능 외에도, 래퍼 클래스는 자체 지원하는 `parse타입()` 메소드를 이용하여 데이터 타입을 형 변환 할때도 유용히 쓰인다.
+    
+    ```java
+    String str = "10";
+    String str2 = "10.5";
+    String str3 = "true";
+    
+    byte b = Byte.parseByte(str);
+    int i = Integer.parseInt(str);
+    short s = Short.parseShort(str);
+    long l = Long.parseLong(str);
+    float f = Float.parseFloat(str2);
+    double d = Double.parseDouble(str2);
+    boolean bool = Boolean.parseBoolean(str3);
+    
+    System.out.println("문자열 byte값 변환 : "+b);
+    System.out.println("문자열 int값 변환 : "+i);
+    System.out.println("문자열 short값 변환 : "+s);
+    System.out.println("문자열 long값 변환 : "+l);
+    System.out.println("문자열 float값 변환 : "+f);
+    System.out.println("문자열 double값 변환 : "+d);
+    System.out.println("문자열 boolean값 변환 : "+bool);
+    ```
+
 # 정리
 
 - 메모리, 변수, 상수 개념
 - 자료형과 형변환(캐스팅)
+- Wrapper
